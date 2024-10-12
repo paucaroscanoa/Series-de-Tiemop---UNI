@@ -1,0 +1,20 @@
+#----------------------Librerias ---------------------------------------
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+#!pip install statsmodels
+import statsmodels.api as sm
+from statsmodels.graphics.tsaplots import plot_acf, plot_pacf
+from statsmodels.tsa.stattools import acf, pacf
+
+#-----------lectura de datos--------------------------------------------
+datos = pd.read_excel('/content/sample_data/Datos.xlsx',index_col=0)
+#-----------------------------------------------------------------------
+
+#-----Función de Autocorrelación - Autocorrelación Parcial---------------
+datos1=datos.copy()
+acf_values = sm.tsa.acf(datos1['Ventas'], nlags=5)
+fig = sm.graphics.tsa.plot_acf(datos1['Ventas'], lags=10)
+plt.show()
+acf_values
